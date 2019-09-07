@@ -67,8 +67,11 @@
         nav:true
       }
     }
-	});
-
+  });
+  
+  for(var i =0 ;i <100;i++){
+    $("#article").append("<p>xxxxxxxxxx<br></p>")
+  } 
  $(window).scroll(function(){  //只要窗口滚动,就触发下面代码
 
         var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
