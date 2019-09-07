@@ -72,28 +72,45 @@
   for(var i =0 ;i <100;i++){
     $("#article").append("<p>xxxxxxxxxx<br></p>")
   } 
- $(window).scroll(function(){  //只要窗口滚动,就触发下面代码
+//  $(window).scroll(function(){  //只要窗口滚动,就触发下面代码
 
-        var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
+//         var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
 
-        if( scrollt >200 ){  //判断滚动后高度超过200px,就显示
+//         if( scrollt >200 ){  //判断滚动后高度超过200px,就显示
 
-            $("#gotop").fadeIn(400); //淡入
+//             $("#gotop").fadeIn(400); //淡入
 
-        }else{
+//         }else{
 
-            $("#gotop").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
+//             $("#gotop").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
 
+//         }
+
+//     });
+
+//     $("#gotop").click(function(){ //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+
+//         $("html,body").animate({scrollTop:"0px"},200);
+
+//     }); 
+var timer = null;
+    test.onclick = function () {
+      cancelAnimationFrame(timer);
+      //获取当前毫秒数
+      var startTime = +new Date();
+      //获取当前页面的滚动高度
+      var b = document.body.scrollTop || document.documentElement.scrollTop;
+      var d = 500;
+      var c = b;
+      timer = requestAnimationFrame(function func() {
+        var t = d - Math.max(0, startTime - (+new Date()) + d);
+        document.documentElement.scrollTop = document.body.scrollTop = t * (-c) / d + b;
+        timer = requestAnimationFrame(func);
+        if (t == d) {
+          cancelAnimationFrame(timer);
         }
-
-    });
-
-    $("#gotop").click(function(){ //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
-
-        $("html,body").animate({scrollTop:"0px"},200);
-
-    }); 
-
+      });
+    }
     
   $('.nonloop-block-11').owlCarousel({
       center: false,
