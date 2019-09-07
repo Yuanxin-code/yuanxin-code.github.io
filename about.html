@@ -66,12 +66,27 @@
   </header>
   <!-- END header -->
 
-  <!-- Arrow Top -->
-  <div id="article"></div>
-  <div id="gotop">
-  <div class="arrow"></div>
-  <div class="stick"></div></div>
-  <!-- END Arrow -->
+  <button id="test" style="position:fixed;right:10px;bottom:10px;">回到顶部</button>
+  <script>
+    var timer = null;
+    test.onclick = function () {
+      cancelAnimationFrame(timer);
+      //获取当前毫秒数
+      var startTime = +new Date();
+      //获取当前页面的滚动高度
+      var b = document.body.scrollTop || document.documentElement.scrollTop;
+      var d = 500;
+      var c = b;
+      timer = requestAnimationFrame(function func() {
+        var t = d - Math.max(0, startTime - (+new Date()) + d);
+        document.documentElement.scrollTop = document.body.scrollTop = t * (-c) / d + b;
+        timer = requestAnimationFrame(func);
+        if (t == d) {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+  </script>
 
   <div class="slider-item overlay" data-stellar-background-ratio="0.5"
     style="background-image: url('images/hero_2.jpg');">
