@@ -250,6 +250,13 @@ header {
 	}
 }
 
+.arrow{
+            border: 9px solid transparent;
+            border-bottom-color: #3DA0DB;
+            width: 0px;
+            height: 0px;
+            top:0px
+        }
 // half
 .half {
 	.text, .image {
